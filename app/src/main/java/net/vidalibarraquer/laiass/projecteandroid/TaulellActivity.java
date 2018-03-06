@@ -26,7 +26,7 @@ public class TaulellActivity extends AppCompatActivity implements View.OnClickLi
 
         dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        dialogView = inflater.inflate(R.layout.instruccions, null);
+        dialogView = inflater.inflate(R.layout.dau, null);
         dialogBuilder.setView(dialogView);
     }
 
@@ -36,8 +36,14 @@ public class TaulellActivity extends AppCompatActivity implements View.OnClickLi
         if (v.getId() == R.id.bt_dau){
             dau = random.nextInt(6)+1;
             //System.out.println("----------------------------dau : "+dau);
-
+            alerta();
         }
+    }
+
+    public void alerta(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(TaulellActivity.this);
+        builder.create();
+        builder.setMessage("DAU:"+dau).show();
     }
 
 }
