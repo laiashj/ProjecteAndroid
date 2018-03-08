@@ -18,6 +18,7 @@ public class JugadorsActivity extends AppCompatActivity implements AdapterView.O
     private EditText et_jugador3;
     private EditText et_jugador4;
     private Button bt_jugar;
+    int numero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +52,14 @@ public class JugadorsActivity extends AppCompatActivity implements AdapterView.O
                 ferInvisible();
                 et_jugador1.setVisibility(View.VISIBLE);
                 et_jugador2.setVisibility(View.VISIBLE);
+                numero = 2;
                 break;
             case 1:
                 ferInvisible();
                 et_jugador1.setVisibility(View.VISIBLE);
                 et_jugador2.setVisibility(View.VISIBLE);
                 et_jugador3.setVisibility(View.VISIBLE);
+                numero = 3;
                 break;
             case 2:
                 ferInvisible();
@@ -64,6 +67,7 @@ public class JugadorsActivity extends AppCompatActivity implements AdapterView.O
                 et_jugador2.setVisibility(View.VISIBLE);
                 et_jugador3.setVisibility(View.VISIBLE);
                 et_jugador4.setVisibility(View.VISIBLE);
+                numero = 4;
                 break;
         }
     }
@@ -86,5 +90,10 @@ public class JugadorsActivity extends AppCompatActivity implements AdapterView.O
             Intent intent2 = new Intent(JugadorsActivity.this, TaulellActivity.class);
             startActivity(intent2);
         }
+        Model model = new Model(numero);
+        TaulellActivity taulell = new TaulellActivity();
+        taulell.assignaModel(model);
     }
+
+
 }

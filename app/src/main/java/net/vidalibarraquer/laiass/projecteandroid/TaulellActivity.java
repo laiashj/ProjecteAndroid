@@ -10,12 +10,15 @@ import android.widget.ImageButton;
 
 import java.util.Random;
 
-public class TaulellActivity extends AppCompatActivity implements View.OnClickListener{
+public class TaulellActivity extends AppCompatActivity implements View.OnClickListener, assignaModel<Model>{
 
     private ImageButton bt_dau;
     private int dau;
     private View dialogView;
     private AlertDialog.Builder dialogBuilder;
+    private Model model;
+    private int torn = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +26,6 @@ public class TaulellActivity extends AppCompatActivity implements View.OnClickLi
 
         bt_dau = (ImageButton) findViewById(R.id.bt_dau);
         bt_dau.setOnClickListener(this);
-
-        dialogBuilder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        dialogView = inflater.inflate(R.layout.dau, null);
-        dialogBuilder.setView(dialogView);
     }
 
     @Override
@@ -35,7 +33,6 @@ public class TaulellActivity extends AppCompatActivity implements View.OnClickLi
         Random random = new Random();
         if (v.getId() == R.id.bt_dau){
             dau = random.nextInt(6)+1;
-            //System.out.println("----------------------------dau : "+dau);
             alerta();
         }
     }
@@ -45,5 +42,19 @@ public class TaulellActivity extends AppCompatActivity implements View.OnClickLi
         builder.create();
         builder.setMessage("DAU:"+dau).show();
     }
+    public void tornJugador(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(TaulellActivity.this);
+        builder.create();
+        builder.setMessage("TORN DEL JUGADOR:"+model.getJugadorTorn(torn)).show();
+    }
 
+    public void canviTorn(){
+        torn = (torn + 1)% model.getMida();
+    }
+
+
+    @Override
+    public void assignaModel(Model obj) {
+        model = obj;
+    }
 }
